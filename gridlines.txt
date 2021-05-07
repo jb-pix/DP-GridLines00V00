@@ -1,0 +1,14 @@
+Project:    DrawingProject. GUI for an integrated drawing package
+Module:    DP-GridLines00V00
+File:       window.cpp
+File Path:  ~/apps/qtexamples/DrawingProject/gridlines00/
+Author:     Jane Booth
+Date:       06/05/2021
+Title Note:        DP: DrawingProject
+                        GridLines: class name
+                        00:            class type
+                        V00:          version major/minor
+
+
+This module generates grids of co.ordinates
+
