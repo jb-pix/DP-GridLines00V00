@@ -13,14 +13,13 @@ painting/basicdrawing/renderarea.h
 #include <QPen>
 #include <QPixmap>
 #include <QWidget>
-#include <QPointF>
 
 class RenderArea : public QWidget
 {
   Q_OBJECT
 
 public:
- // enum Shape { Ellipse, Dot, Text, Pixmap };
+  enum Shape { Ellipse, Dot, Text, Pixmap };
   RenderArea(QWidget *parent = 0);
 //  Window myWindow();
 
@@ -45,8 +44,7 @@ private:
 
   bool grid2(int i, int j, int scale);
 
-//  Shape shape;
-  QString GridType;
+  Shape shape;
   QPen pen;
   QBrush brush;
   bool antialiased;

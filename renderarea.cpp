@@ -6,12 +6,14 @@ painting/basicdrawing/renderarea.cpp
 ****************************************************************************/
 #include "renderarea.h"
 
+//#include <QRect>
 #include <QPainter>
 #include <QDebug>
 
 RenderArea::RenderArea(QWidget *parent): QWidget(parent){
-  //shape = Dot;
+  shape = Dot;
   antialiased = false;
+//  pixmap.load("/home/janebo/apps/qtexamples/drawDotsV000/images/Qt-logo.png");
 
   setBackgroundRole(QPalette::Base);
   setAutoFillBackground(true);
@@ -27,6 +29,24 @@ QSize RenderArea::sizeHint() const
   return QSize(wdPix, htPix);
 }
 
+//void RenderArea::setShape(Shape shape)
+//{
+//  this->shape = shape;
+//  update();
+//}
+
+//void RenderArea::setPen(const QPen &pen)
+//{
+//  this->pen = pen;
+//  update();
+//}
+
+//void RenderArea::setBrush(const QBrush &brush)
+//{
+//  this->brush = brush;
+//  update();
+//}
+
 void RenderArea::setAntialiased(bool antialiased)
 {
   this->antialiased = antialiased;
@@ -37,6 +57,7 @@ bool RenderArea::grid2(int i, int j, int scale){
   // qDebug() <<"START grid2";
   qDebug() <<"scale: " << scale;
   bool retval = false;
+ // qDebug() <<"(i , j): (" << i << " , " << j << ")";
   bool isXCoordDrawn = (i)%scale;
   bool isYCoordDrawn = (j)%scale;
   //retval = (isXCoordDrawn||isYCoordDrawn);
@@ -46,41 +67,18 @@ bool RenderArea::grid2(int i, int j, int scale){
 }
 void RenderArea::paintEvent(QPaintEvent * /* event */)
 {
-//  void QPainter::drawEllipse(const QPointF &center, qreal rx, qreal ry)
-//  This is an overloaded function.
-//  Draws the ellipse positioned at center with radii rx and ry.
-
+//  QRect rect(10, 20, 80, 60);//for ellipse
   QPainter painter(this);
   painter.setPen(pen);
+//  painter.setBrush(brush);
   if (antialiased)
     painter.setRenderHint(QPainter::Antialiasing, true);
   painter.save();
-  qreal scale = 0.01;
-  for (int x = 0; x < width()*100; x += 100) {
-  //for (int x = 0; x < width()*99; x += 10) {
-    for (int y = 0; y < height() - 0.1/scale; y += 100) {
-      //for (int y = 0; y < height() - 0.4/scale; y += 100) {
-      //for (int y = 0; y < height(); y += 100) {
-        qreal xx = x*scale;
-        qreal yy = y;
-        qreal r = 0.5;
-        //qreal r = 1.2;
-
-        QPointF ptf;
-        ptf.setX(xx);
-        ptf.setY(yy);
-        painter.drawEllipse(ptf, r, r);//circle
-        //painter.drawPoint(x, y );
-      }
+  for (int x = 0; x < width(); x += 10) {
+    for (int y = 0; y < height(); y += 10) {
+        painter.drawPoint(x, y );
     }
-
-  //  for (int x = 0; x < width(); x += 10) {
-  //    for (int y = 0; y < height(); y += 10) {
-  //      painter.drawPoint(x, y );
-  //      //painter.drawPoint(x, y );
-  //    }
-  //  }
-
+  }
   painter.restore();
 }
 

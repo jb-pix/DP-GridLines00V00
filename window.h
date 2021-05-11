@@ -1,5 +1,8 @@
 /****************************************************************************
-
+Qt 5.7.1 Reference Documentation
+Qt Widgets
+Basic Drawing Example
+painting/basicdrawing/window.h
 ****************************************************************************/
 #ifndef WINDOW_H
 #define WINDOW_H
@@ -22,16 +25,22 @@ class Window : public QWidget
   
 public:
   Window();
+  QSize getDotSize();
   
 private slots:
-  void gridChanged();
-
+  //void shapeChanged();
+  //void penChanged();
+//  void brushChanged();
+  
 private:
   RenderArea *renderArea;
-  QLabel* otherOptionsLabel;
+  QLabel *shapeLabel;
+  QLabel *penWidthLabel;
+  QLabel *otherOptionsLabel;
+  QComboBox *shapeComboBox;
+  QSpinBox *penWidthSpinBox;
+  QComboBox *penJoinComboBox;
   QCheckBox *antialiasingCheckBox;
-  QLabel* gridLabel;
-  QComboBox* gridComboBox;
   int penWidth;
 };
 
